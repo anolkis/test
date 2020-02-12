@@ -1,0 +1,20 @@
+version: '2'
+
+networks:
+  demo_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
+
+services:
+  demo:
+    container_name: demo
+    build:
+      context: ./
+    ports:
+      - 7080:8080
+    networks:
+      demo_network:
+        ipv4_address: 192.168.10.10
